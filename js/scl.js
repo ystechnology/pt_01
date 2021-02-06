@@ -1,15 +1,20 @@
 var _window = $(window),
     _header = $('header'),
-    heroBottom;
+    heroBottom,
+    startPos,
+    winScrollTop;
 
 _window.on('scroll',function(){
-    heroBottom = $('.menu').height();
-    if(_window.scrollTop() > heroBottom){
-        _header.addClass('transform');
+    winScrollTop = $(this).scrollTop();
+    heroBottom = $('.footer_title').height();
+    if (winScrollTop >= startPos) {
+        if(winScrollTop >= heroBottom){
+            _header.addClass('hide');
+        }
+    } else {
+        _header.removeClass('hide');
     }
-    else{
-        _header.removeClass('transform');
-    }
+    startPos = winScrollTop;
 });
 
 _window.trigger('scroll');
